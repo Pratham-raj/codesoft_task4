@@ -1,0 +1,41 @@
+#include<iostream>
+#include<fstream>
+#include<iomanip>
+using namespace std;
+void createfile(string &filename){
+    ofstream outfile(filename);
+    if(outfile.is_open()){
+        outfile<<"HII my name is pratham and i am from bangalore."<<endl;
+        outfile.close();
+    }
+    else{
+        cout<<"File not able to open sucessfully"<<endl;
+        exit(1);
+    }
+}
+int readword(string &filename){
+    ifstream infile(filename);
+    if(!infile.is_open()){
+        cout<<"File not open Sucessfully."<<endl;
+        return -1;
+    }
+    string word;
+    int wordcount =0;
+    while(infile>>word){
+        wordcount++;
+    }
+    infile.close();
+    return wordcount;
+}
+int main(){
+    cout<<setw(30)<<"***Welcome to the Word Count Program***"<<endl;
+    string filename ;
+    cout<<"Enter the file name: ";
+    cin>>filename;
+    createfile(filename);
+    int count =readword(filename);
+    if(count!=-1){
+        cout<<"The word count in the file: "<<count<<endl;
+    }
+    return 0;
+}
